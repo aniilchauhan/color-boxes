@@ -1,0 +1,213 @@
+import React, { Component } from 'react'
+import Box from './Box'
+
+export class BoxContainer extends Component {
+  static defaultProps = {
+    colorArr : [
+      "AliceBlue",
+      "AntiqueWhite",
+      "Aqua",
+      "Aquamarine",
+      "Azure",
+      "Beige",
+      "Bisque",
+      "Black",
+      "BlanchedAlmond",
+      "Blue",
+      "BlueViolet",
+      "Brown",
+      "BurlyWood",
+      "CadetBlue",
+      "Chartreuse",
+      "Chocolate",
+      "Coral",
+      "CornflowerBlue",
+      "Cornsilk",
+      "Crimson",
+      "Cyan",
+      "DarkBlue",
+      "DarkCyan",
+      "DarkGoldenRod",
+      "DarkGray",
+      "DarkGrey",
+      "DarkGreen",
+      "DarkKhaki",
+      "DarkMagenta",
+      "DarkOliveGreen",
+      "DarkOrange",
+      "DarkOrchid",
+      "DarkRed",
+      "DarkSalmon",
+      "DarkSeaGreen",
+      "DarkSlateBlue",
+      "DarkSlateGray",
+      "DarkSlateGrey",
+      "DarkTurquoise",
+      "DarkViolet",
+      "DeepPink",
+      "DeepSkyBlue",
+      "DimGray",
+      "DimGrey",
+      "DodgerBlue",
+      "FireBrick",
+      "FloralWhite",
+      "ForestGreen",
+      "Fuchsia",
+      "Gainsboro",
+      "GhostWhite",
+      "Gold",
+      "GoldenRod",
+      "Gray",
+      "Grey",
+      "Green",
+      "GreenYellow",
+      "HoneyDew",
+      "HotPink",
+      "IndianRed",
+      "Indigo",
+      "Ivory",
+      "Khaki",
+      "Lavender",
+      "LavenderBlush",
+      "LawnGreen",
+      "LemonChiffon",
+      "LightBlue",
+      "LightCoral",
+      "LightCyan",
+      "LightGoldenRodYellow",
+      "LightGray",
+      "LightGrey",
+      "LightGreen",
+      "LightPink",
+      "LightSalmon",
+      "LightSeaGreen",
+      "LightSkyBlue",
+      "LightSlateGray",
+      "LightSlateGrey",
+      "LightSteelBlue",
+      "LightYellow",
+      "Lime",
+      "LimeGreen",
+      "Linen",
+      "Magenta",
+      "Maroon",
+      "MediumAquaMarine",
+      "MediumBlue",
+      "MediumOrchid",
+      "MediumPurple",
+      "MediumSeaGreen",
+      "MediumSlateBlue",
+      "MediumSpringGreen",
+      "MediumTurquoise",
+      "MediumVioletRed",
+      "MidnightBlue",
+      "MintCream",
+      "MistyRose",
+      "Moccasin",
+      "NavajoWhite",
+      "Navy",
+      "OldLace",
+      "Olive",
+      "OliveDrab",
+      "Orange",
+      "OrangeRed",
+      "Orchid",
+      "PaleGoldenRod",
+      "PaleGreen",
+      "PaleTurquoise",
+      "PaleVioletRed",
+      "PapayaWhip",
+      "PeachPuff",
+      "Peru",
+      "Pink",
+      "Plum",
+      "PowderBlue",
+      "Purple",
+      "RebeccaPurple",
+      "Red",
+      "RosyBrown",
+      "RoyalBlue",
+      "SaddleBrown",
+      "Salmon",
+      "SandyBrown",
+      "SeaGreen",
+      "SeaShell",
+      "Sienna",
+      "Silver",
+      "SkyBlue",
+      "SlateBlue",
+      "SlateGray",
+      "SlateGrey",
+      "Snow",
+      "SpringGreen",
+      "SteelBlue",
+      "Tan",
+      "Teal",
+      "Thistle",
+      "Tomato",
+      "Turquoise",
+      "Violet",
+      "Wheat",
+      "White",
+      "WhiteSmoke",
+      "Yellow",
+      "YellowGreen",
+    ]
+  }
+  constructor(props){
+    super(props);
+    this.state = {
+      colorBox : [{id:1,color:"black"},
+      {id:2,color:"white"},
+      {id:3,color:"black"},
+      {id:4,color:"white"},
+      {id:5,color:"black"},
+      {id:6,color:"white"},
+      {id:7,color:"white"},
+      {id:8,color:"black"},
+      {id:9,color:"white"},
+      {id:10,color:"white"},
+      {id:11,color:"black"},
+      {id:12,color:"white"},
+      {id:13,color:"black"},
+      {id:14,color:"white"},
+      {id:15,color:"black"},
+      {id:16,color:"white"},
+      {id:17,color:"black"},
+      {id:18,color:"white"},
+      {id:19,color:"black"},
+      {id:20,color:"white"},
+      {id:21,color:"black"},
+      {id:22,color:"white"},
+      {id:23,color:"black"},
+      {id:24,color:"white"},
+    ]
+    }
+  }
+  handleClick = (e,obj) => {
+    let randomNum = Math.floor(Math.random()*this.props.colorArr.length);
+    obj.color=this.props.colorArr[randomNum];
+    let newArr = []
+    let newBox = this.state.colorBox.map((element,i)=>{
+      if (obj.id===element.id){
+        element.color = obj.color;
+      }
+      newArr.push(element)
+    })
+    console.log(newBox)
+    this.setState({
+      colorBox:[...newArr]
+    })
+  }
+  render() {
+    return (
+      <div className="container-fluid">
+        <div className='row'>
+       {this.state.colorBox.map((obj,index)=> <Box key={index} handleClick={(e) =>this.handleClick(e,obj)} boxObj = {obj}/>)}
+      </div>
+      </div>
+    )
+  }
+}
+
+export default BoxContainer
